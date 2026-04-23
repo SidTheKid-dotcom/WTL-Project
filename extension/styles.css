@@ -1,0 +1,582 @@
+/* Intercom — Side Panel Styles (Dark Theme). Web technologies lab: HTML + CSS + vanilla JS. */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+  background: #0f0f14;
+  color: #e4e4e7;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* ─── Header ──────────────────────────────────────────── */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: #18181b;
+  border-bottom: 1px solid #27272a;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+header h1,
+header .app-brand {
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #818cf8, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.3px;
+  margin: 0;
+}
+
+/* ─── Status Badge ────────────────────────────────────── */
+
+.status {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 10px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.status-idle {
+  background: #27272a;
+  color: #71717a;
+}
+
+.status-loading {
+  background: #422006;
+  color: #fb923c;
+  animation: pulse 1.5s infinite;
+}
+
+.status-ready {
+  background: #052e16;
+  color: #4ade80;
+}
+
+.status-error {
+  background: #450a0a;
+  color: #f87171;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ─── Activate Button ─────────────────────────────────── */
+
+.btn-activate {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-activate:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.btn-activate:active {
+  transform: translateY(0);
+}
+
+.btn-activate:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ─── Page Info Bar ───────────────────────────────────── */
+
+.page-info {
+  padding: 8px 16px;
+  background: #1c1c22;
+  border-bottom: 1px solid #27272a;
+  font-size: 12px;
+  color: #a1a1aa;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ─── Messages Area ───────────────────────────────────── */
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.welcome-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  color: #71717a;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.welcome-icon {
+  font-size: 48px;
+}
+
+.welcome-message p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.welcome-message strong {
+  color: #a78bfa;
+}
+
+/* ─── Message Bubbles ─────────────────────────────────── */
+
+.message {
+  max-width: 88%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.55;
+  word-wrap: break-word;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #6366f1, #818cf8);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.message-assistant {
+  align-self: flex-start;
+  background: #27272a;
+  color: #e4e4e7;
+  border-bottom-left-radius: 4px;
+}
+
+.message-system {
+  align-self: center;
+  background: #1c1c22;
+  color: #a1a1aa;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 8px;
+  padding: 6px 12px;
+  max-width: 95%;
+}
+
+.message-action {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 6px;
+  font-size: 11px;
+  color: #818cf8;
+}
+
+/* ─── Intro: minimal + canvas particles + orbital mark ─ */
+
+.intro-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  background: #09090b;
+  overflow: hidden;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform-origin: 50% 50%;
+}
+
+.intro-splash--exit {
+  opacity: 0;
+  transform: scale(0.99);
+  pointer-events: none;
+}
+
+.intro-particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.intro-splash__dim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    ellipse 85% 65% at 50% 45%,
+    rgba(9, 9, 11, 0.15) 0%,
+    rgba(9, 9, 11, 0.75) 55%,
+    #09090b 100%
+  );
+  pointer-events: none;
+}
+
+.intro-splash__center {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  min-height: min(100vh, 100dvh);
+}
+
+.intro-hero {
+  width: 100%;
+  max-width: 240px;
+  text-align: center;
+  animation: introHero 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+@keyframes introHero {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Rotating ring logo */
+.intro-mark {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 28px;
+}
+
+.intro-mark__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.intro-mark__ring--a {
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
+  border-color: rgba(255, 255, 255, 0.12);
+  border-top-color: rgba(129, 140, 248, 0.55);
+  border-right-color: rgba(99, 102, 241, 0.2);
+  animation: introRingA 16s linear infinite;
+}
+
+.intro-mark__ring--b {
+  width: 52px;
+  height: 52px;
+  margin: -26px 0 0 -26px;
+  border-color: rgba(255, 255, 255, 0.08);
+  border-bottom-color: rgba(167, 139, 250, 0.4);
+  animation: introRingB 11s linear infinite;
+}
+
+@keyframes introRingA {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes introRingB {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+.intro-mark__core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: #e4e4e7;
+  box-shadow: 0 0 18px rgba(196, 181, 253, 0.55);
+  animation: introCore 2.8s ease-in-out infinite;
+}
+
+@keyframes introCore {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.intro-splash__kicker {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #52525b;
+  margin-bottom: 6px;
+}
+
+.intro-splash__title {
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: 1.05;
+  color: #fafafa;
+  margin-bottom: 10px;
+}
+
+.intro-splash__tag {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #71717a;
+  font-weight: 400;
+  margin-bottom: 28px;
+}
+
+.btn-intro-continue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #09090b;
+  background: #fafafa;
+  border: 1px solid #fafafa;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn-intro-continue:hover {
+  background: transparent;
+  color: #fafafa;
+  border-color: #3f3f46;
+}
+
+.btn-intro-continue:focus-visible {
+  outline: 1px solid #a78bfa;
+  outline-offset: 3px;
+}
+
+.btn-intro-continue:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-hero,
+  .intro-mark__ring--a,
+  .intro-mark__ring--b,
+  .intro-mark__core {
+    animation: none !important;
+  }
+  .intro-hero {
+    opacity: 1;
+    transform: none;
+  }
+  .intro-splash--exit {
+    transform: none;
+  }
+}
+
+/* ─── Chat Input Area ─────────────────────────────────── */
+
+.chat-input-area {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #18181b;
+  border-top: 1px solid #27272a;
+}
+
+#message-input {
+  flex: 1;
+  background: #27272a;
+  border: 1px solid #3f3f46;
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: #e4e4e7;
+  font-size: 13px;
+  font-family: inherit;
+  resize: none;
+  outline: none;
+  max-height: 120px;
+  transition: border-color 0.2s ease;
+}
+
+#message-input:focus {
+  border-color: #6366f1;
+}
+
+#message-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#message-input::placeholder {
+  color: #52525b;
+}
+
+.btn-send {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-send:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.btn-send:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ─── Scrollbar ───────────────────────────────────────── */
+
+.messages::-webkit-scrollbar {
+  width: 5px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 3px;
+}
+
+.messages::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* ─── Loading Dots ────────────────────────────────────── */
+
+.loading-dots {
+  display: flex;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.loading-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #71717a;
+  animation: bounce 1.4s infinite both;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}

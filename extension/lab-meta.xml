@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Intercom lab: external XML; sidepanel.js loads this with fetch + DOMParser -->
+<intercomProject xmlns="urn:intercom:lab" version="1.0">
+  <kicker>Web Tech Lab</kicker>
+</intercomProject>

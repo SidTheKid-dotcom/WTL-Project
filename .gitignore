@@ -1,0 +1,14 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+.env
+
+# ChromaDB local data
+chroma_data/
+
+# SQLite
+backend/data/
+
+# OS
+.DS_Store

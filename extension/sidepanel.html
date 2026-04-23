@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intercom</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Intro: canvas particles (vanilla JS) + minimal layout; lab-meta.xml → kicker in JS -->
+    <div
+      id="intro-splash"
+      class="intro-splash"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="intro-title"
+    >
+      <canvas
+        id="intro-particles"
+        class="intro-particles"
+        width="300"
+        height="400"
+        aria-hidden="true"
+      ></canvas>
+      <div class="intro-splash__dim" aria-hidden="true"></div>
+
+      <div class="intro-splash__center">
+        <div class="intro-hero">
+          <div class="intro-mark" aria-hidden="true">
+            <div class="intro-mark__ring intro-mark__ring--a"></div>
+            <div class="intro-mark__ring intro-mark__ring--b"></div>
+            <div class="intro-mark__core"></div>
+          </div>
+          <p id="intro-kicker" class="intro-splash__kicker">Lab</p>
+          <h1 id="intro-title" class="intro-splash__title">Intercom</h1>
+          <p class="intro-splash__tag">Ask the page. Side panel, no framework.</p>
+          <button type="button" id="intro-continue" class="btn-intro-continue">
+            Enter
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="app" class="app" aria-hidden="true">
+      <header id="header">
+        <div class="header-left">
+          <h2 class="app-brand">Intercom</h2>
+          <span id="status" class="status status-idle">Not activated</span>
+        </div>
+        <button id="activate-btn" class="btn-activate">⚡ Activate</button>
+      </header>
+
+      <div id="page-info" class="page-info hidden">
+        <span id="page-title" class="page-title"></span>
+      </div>
+
+      <div id="messages" class="messages">
+        <div class="welcome-message">
+          <div class="welcome-icon">💬</div>
+          <p>
+            Click <strong>Activate</strong> to index this page, then ask
+            <strong>Intercom</strong> anything about it.
+          </p>
+        </div>
+      </div>
+
+      <div id="chat-input-area" class="chat-input-area">
+        <textarea
+          id="message-input"
+          placeholder="Ask about this page..."
+          rows="1"
+          disabled
+        ></textarea>
+        <button id="send-btn" class="btn-send" disabled>➤</button>
+      </div>
+    </div>
+
+    <script src="sidepanel.js"></script>
+  </body>
+</html>
